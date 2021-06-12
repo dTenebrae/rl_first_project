@@ -17,11 +17,15 @@ RUN pip3 install --upgrade pip
 
 COPY requirements.txt /tmp/
 
+COPY test/test_image.py /tmp/
+
 RUN pip3 install --trusted-host pypi.python.org -r /tmp/requirements.txt
 
 RUN rm /tmp/requirements.txt
 
 RUN mkdir /home/my_rl
+
+WORKDIR /home/my_rl
 
 ADD scripts/startup_script.sh /usr/local/bin/startup_script.sh
 
